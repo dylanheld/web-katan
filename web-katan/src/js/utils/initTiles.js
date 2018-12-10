@@ -1,3 +1,5 @@
+import { TILE_TYPES } from './constants'
+
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -18,9 +20,15 @@ function shuffle(array) {
 }
 
 const initTiles = () => {
-  const tileTypes = ['field', 'forest', 'pasture', 'mountain', 'hills'];
-  const allTiles = tileTypes.map(tileType => [...Array(4).keys()].map((_, i) => tileType)).flat();
-  return shuffle(allTiles);
+  const tiles = [
+    [...Array(4).keys()].map(i => TILE_TYPES.PASTURE),
+    [...Array(4).keys()].map(i => TILE_TYPES.FIELD),
+    [...Array(4).keys()].map(i => TILE_TYPES.FOREST),
+    [...Array(3).keys()].map(i => TILE_TYPES.MOUNTAIN),
+    [...Array(3).keys()].map(i => TILE_TYPES.HILLS),
+    TILE_TYPES.DESERT,
+  ].flat();
+  return shuffle(tiles);
 };
 
 export default initTiles;
